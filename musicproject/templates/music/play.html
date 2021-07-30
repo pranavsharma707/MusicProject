@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+     
+    
+     <style>
+    img{
+      margin-left:50px;
+    }
+    button{
+      margin-left:1px;
+      width:50px;
+    }
+    .m{
+      margin-left:50px;
+    }
+    .col-md-1{
+      padding-left:50px;
+    }
+
+  .padding{
+    padding-left:20px;
+    
+  }
+  #comment{
+     padding-left:70px;
+     width:500px;
+    
+  }
+
+  #b{
+    width:100px;
+  }
+
+   #bc{
+    width:100px;
+  }
+  
+  
+  .k{
+    padding-right:100px;
+  }
+
+      </style>
+  <body>
+ <div class='m'>
+  {%for music in audio%}
+ 
+  {{music.title}}
+  <br>
+   <audio controls>
+  <source src="{{music.path.url}}" type="audio/mpeg">
+</audio><br>
+{% comment %} <form method='POST' action="{% url 'likes' music.pk%}"> {% endcomment %}
+{% comment %} <a class='btn btn-primary btn-sm' name='music_id' value='{{music.id}}' type='submit'>Likes</a> {% endcomment %}
+<a name={{music.id}} class='btn btn-primary btn-sm' id='bu'>Like</a>
+{% comment %} <button type='submit' value={{music.id}} name='music_id1' class='btn btn-primary btn-sm'>DisLike</button> {% endcomment %}
+<b id='count'>{{music.likes.count}}</b>
+<br>
+{%endfor%}
+</div>
+<hr>
+
+
+
+{% comment %} <a href='/logout' class="btn btn-primary">Logout</a> {% endcomment %}
+{% comment %} <br><br>
+{%for x in comment%}
+<img id="img" class="rounded-circle" alt="Kylie Ying" height="40" width="40" src="https://yt3.ggpht.com/ytc/AKedOLSujENOSw222wVuaAfxS_XLMVrQRhdjI_IoLpE8rQ=s48-c-k-c0x00ffffff-no-rj">
+&nbsp&nbsp&nbsp{{x.user_id.username}}&nbsp{{x.created_on|timesince}}<br>
+
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{x.comment}}
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    reply
+  </button>").clic
+<div class="collapse" id="{{x.id}}">
+  <div class="card card-body">
+
+  </div>
+</div>
+<br>
+{%endfor%} {% endcomment %}
+
+ {%for x in audio%}
+   <div class="form-group" id='comment' data-href="{% url 'play' x.pk %}">
+     <label for="comment">Comment</label>
+    <textarea id="comment" name="comment" rows="2" cols="10" class="form-control" required>
+</textarea>
+  </div>
+  <div class="form-group">
+  <input type="hidden" id="custId" name="music_id" value="{{x.id}}">
+  </div> 
+ 
+  <a  class="btn btn-primary btn-sm" id='bc'>Submit</a>
+ {%endfor%}
+</div>
+
+  <div class="container-fluid">
+  {%for x in comment%}
+    <!-- Control the column width, and how they should appear on different devices -->
+    <div class="row my-3">
+      <div class="col-sm-1 " ><img id="img" class="rounded-circle" alt="Kylie Ying" height="40" width="40" src="https://yt3.ggpht.com/ytc/AKedOLSujENOSw222wVuaAfxS_XLMVrQRhdjI_IoLpE8rQ=s48-c-k-c0x00ffffff-no-rj"></div>
+      <div class="col-sm-3 padding" ><b>{{x.user_id.username}}</b> <span class='badge badge-secondary'>{{x.created_on|timesince}}</span><br>
+     <p id='mycomment'> {{x.comment}}<p> <br>
+
+        <button class="btn btn-primary btn-sm my-0" type="button" data-toggle="collapse" data-target="#replay{{x.id}}" aria-expanded="false" aria-controls="collapseExample">
+   Reply
+  </button>
+  
+
+ <div class="collapse my-2" id="replay{{x.id}}">
+<div class="form-group">
+{%for y in x.replies.all%}
+  <div class="row my-3" >
+
+  <div class="col-2 k"><img id="img" class="rounded-circle" alt="Kylie Ying" height="40" width="40" src="https://yt3.ggpht.com/ytc/AKedOLSujENOSw222wVuaAfxS_XLMVrQRhdjI_IoLpE8rQ=s48-c-k-c0x00ffffff-no-rj"></div>
+  <div class="col-100"><b>{{y.user_id.username}}</b>&nbsp;<span class='badge badge-secondary'>{{y.created_on|timesince}}</span><br>
+  {{y.comment}}
+  </div>
+  </div>
+  {%endfor%}
+
+
+<input type="hidden" id="reply" name="comment_id" value={{x.id}}>
+<input type="hidden" id="music_id" name="music_id" value={{x.music_id.id}}>
+{% comment %} <input type="hidden" id="user_id" name="user_id" value={{x.user_id.id}}> {% endcomment %}
+<textarea id="comment" name="comment" rows="2" cols="10" class="form-control g" required>
+</textarea>
+  <a class="btn btn-primary btn-sm" id='ba'>Submit</a> 
+   
+  </div>
+  </div>
+  
+   </div>
+   </div>
+   {%endfor%}
+   </div>
+    <!-- Control the column width, and how they should appear on different devices -->
+
+   
+
+ 
+
+
+
+   
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+   
+  
+    <script>
+$('#bu').click(function(){
+    $.ajax({
+             type: "POST",
+             url: "{% url 'likes'%}",
+             data: {'music_id': $(this).attr('name'),'operation':'like_submit','csrfmiddlewaretoken': '{{ csrf_token }}'},
+            dataType: "json",
+             success:function(data){
+               $("#count").html(data)
+             }
+            
+             
+
+
+
+        })
+      
+})
+  $("#bc").click(function(){
+    
+    data=$("textarea").val();
+    $.ajax({
+     type:'POST',
+     url:$('#comment').attr('data-href'),
+     data:{'music_id':$("#custId").attr('value'),'comment':data,'operation':'like_submit','csrfmiddlewaretoken': '{{ csrf_token }}'},
+     dataType: "json",
+     success:function(data){
+               $("#mycomment").html(data)
+
+  
+
+     }
+           
+
+  })
+location.reload()   
+  })
+
+
+  $("#ba").click(function(){
+    data=$(".g").val();
+    $.ajax({
+    type:'POST',
+    url:$('#comment').attr('data-href'),
+    data:{'music_id':$("#custId").attr('value'),'comment':data,'comment_id':$('#reply').attr('value'),'operation':'like_submit','csrfmiddlewaretoken': '{{ csrf_token }}'},
+
+    
+
+    })
+  location.reload()
+  })
+
+
+
+
+
+      
+
+</script> 
+  </body>
+</html>
