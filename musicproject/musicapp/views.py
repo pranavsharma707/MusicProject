@@ -202,8 +202,8 @@ def play(request,id):
           print(audio)
           comment=Comment.objects.filter(music_id__in=audio,reply=None).order_by('-id')
 
-       #   reply=Reply.objects.filter(comment_id__in=comment)
-          return render(request,'music/play.html',{'audio':audio,'comment':comment})
+          no_of_comment=comment.count()
+          return render(request,'music/play.html',{'audio':audio,'comment':comment,'count':no_of_comment})
    else:
           if request.POST.get("operation")=='like_submit' and request.is_ajax():
               user=request.user

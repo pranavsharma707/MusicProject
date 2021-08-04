@@ -60,7 +60,7 @@
 </audio><br>
 {% comment %} <form method='POST' action="{% url 'likes' music.pk%}"> {% endcomment %}
 {% comment %} <a class='btn btn-primary btn-sm' name='music_id' value='{{music.id}}' type='submit'>Likes</a> {% endcomment %}
-<a name={{music.id}} class='btn btn-primary btn-sm' id='bu'>Like</a>
+<a name={{music.id}} id='bu'><img src="data:image/png;base64,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" width='3%' height='3%'></a>
 {% comment %} <button type='submit' value={{music.id}} name='music_id1' class='btn btn-primary btn-sm'>DisLike</button> {% endcomment %}
 <b id='count'>{{music.likes.count}}</b>
 <br>
@@ -108,7 +108,7 @@
     <div class="row my-3">
       <div class="col-sm-1 " ><img id="img" class="rounded-circle" alt="Kylie Ying" height="40" width="40" src="https://yt3.ggpht.com/ytc/AKedOLSujENOSw222wVuaAfxS_XLMVrQRhdjI_IoLpE8rQ=s48-c-k-c0x00ffffff-no-rj"></div>
       <div class="col-sm-3 padding" ><b>{{x.user_id.username}}</b> <span class='badge badge-secondary'>{{x.created_on|timesince}}</span><br>
-     <p id='mycomment'> {{x.comment}}<p> <br>
+      <p id='mycomment'> {{x.comment}}<p> <br>
 
         <button class="btn btn-primary btn-sm my-0" type="button" data-toggle="collapse" data-target="#replay{{x.id}}" aria-expanded="false" aria-controls="collapseExample">
    Reply
@@ -128,12 +128,12 @@
   {%endfor%}
 
 
-<input type="hidden" id="reply" name="comment_id" value={{x.id}}>
+<input type="hidden" id="re" name="comment_id" value={{x.id}}>
 <input type="hidden" id="music_id" name="music_id" value={{x.music_id.id}}>
 {% comment %} <input type="hidden" id="user_id" name="user_id" value={{x.user_id.id}}> {% endcomment %}
-<textarea id="comment" name="comment" rows="2" cols="10" class="form-control g" required>
+<textarea id="reply_{{forloop.counter}}" name='test' rows="2" cols="10" class="form-control text" required>
 </textarea>
-  <a class="btn btn-primary btn-sm" id='ba'>Submit</a> 
+  <a class="btn btn-primary btn-sm com" data='reply_{{forloop.counter}}' value={{x.id}}>Submit</a> 
    
   </div>
   </div>
@@ -199,11 +199,12 @@ location.reload()
 
 
   $("#ba").click(function(){
-    data=$(".g").val();
+    data2=$(this).attr('data');
+    data3=$(`#${data2}`).val()
     $.ajax({
     type:'POST',
     url:$('#comment').attr('data-href'),
-    data:{'music_id':$("#custId").attr('value'),'comment':data,'comment_id':$('#reply').attr('value'),'operation':'like_submit','csrfmiddlewaretoken': '{{ csrf_token }}'},
+    data:{'music_id':$("#custId").attr('value'),'comment':data3,'comment_id':$('#reply').attr('value'),'operation':'like_submit','csrfmiddlewaretoken': '{{ csrf_token }}'},
 
     
 
